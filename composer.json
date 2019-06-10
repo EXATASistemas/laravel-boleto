@@ -1,5 +1,5 @@
 {
-    "name": "eduardokum/laravel-boleto",
+    "name": "exatasistemas/laravel-boleto",
     "description": "Biblioteca com boletos para o laravel",
     "keywords": [
         "eduardokum",
@@ -17,17 +17,17 @@
         "php" : ">=5.5.0",
         "ext-intl": "*",
         "ext-mbstring": "*",
-        "nesbot/carbon": "1.*",
-        "illuminate/contracts": "~5.1",
-        "illuminate/support": "~5.1",
-        "illuminate/view": "~5.1",
-        "illuminate/events": "~5.1",
+        "nesbot/carbon": "2.*",
+        "illuminate/contracts": "~5.8",
+        "illuminate/support": "~5.8",
+        "illuminate/view": "~5.8",
+        "illuminate/events": "~5.8",
         "neitanod/forceutf8": "^2.0",
         "setasign/fpdf": "^1.8"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.0.0",
-        "orchestra/testbench": "3.2"
+        "phpunit/phpunit": "^7.5",
+        "orchestra/testbench": "3.8"
     },
     "autoload": {
         "psr-4": {
