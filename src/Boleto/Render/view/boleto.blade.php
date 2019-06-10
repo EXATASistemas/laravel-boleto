@@ -38,7 +38,7 @@
         <div class="info-empresa">
             @if ($logo)
                 <div style="display: inline-block;">
-                    <img alt="logo" src="{{ $logo_base64 }}"/>
+                    <img alt="logo" src="{{ $logo_base64 }}" style="max-height: 50px"/>
                 </div>
             @endif
             <div style="display: inline-block; vertical-align: super;">

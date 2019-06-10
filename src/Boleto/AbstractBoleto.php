@@ -5,6 +5,7 @@ namespace Eduardokum\LaravelBoleto\Boleto;
 use Carbon\Carbon;
 use Eduardokum\LaravelBoleto\Boleto\Render\Html;
 use Eduardokum\LaravelBoleto\Boleto\Render\Pdf;
+use Eduardokum\LaravelBoleto\Boleto\Render\PdfCaixa;
 use Eduardokum\LaravelBoleto\Contracts\Boleto\Boleto;
 use Eduardokum\LaravelBoleto\Contracts\Pessoa as PessoaContract;
 use Eduardokum\LaravelBoleto\Contracts\Boleto\Boleto as BoletoContract;
@@ -651,13 +652,21 @@ abstract class AbstractBoleto implements BoletoContract
      * Retorna o codigo da Espécie Doc
      *
      * @param int $default
+     * @param int $tipo
      *
      * @return string
      */
-    public function getEspecieDocCodigo($default = 99)
+    public function getEspecieDocCodigo($default = 99, $tipo = 240)
     {
-        return key_exists(strtoupper($this->especieDoc), $this->especiesCodigo)
-            ? $this->especiesCodigo[strtoupper($this->getEspecieDoc())]
+        if (property_exists($this, 'especiesCodigo240') && $tipo == 240) {
+            $especie = $this->especiesCodigo240;
+        } elseif(property_exists($this, 'especiesCodigo400') && $tipo == 400) {
+            $especie = $this->especiesCodigo400;
+        } else {
+            $especie = $this->especiesCodigo;
+        }
+        return key_exists(strtoupper($this->especieDoc), $especie)
+            ? $especie[strtoupper($this->getEspecieDoc())]
             : $default;
     }
 
@@ -1509,9 +1518,13 @@ abstract class AbstractBoleto implements BoletoContract
      * @return string
      * @throws \Exception
      */
-    public function renderPDF($print = false, $instrucoes = true)
+     public function renderPDF($print = false, $instrucoes = true)
     {
-        $pdf = new Pdf();
+        if($this->codigoBanco == 104){
+           $pdf = new PdfCaixa();
+        }else{
+           $pdf = new Pdf();
+        }
         $pdf->addBoleto($this);
         !$print || $pdf->showPrint();
         $instrucoes || $pdf->hideInstrucoes();
