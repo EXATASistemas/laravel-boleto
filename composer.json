@@ -18,13 +18,13 @@
         "ext-intl": "*",
         "ext-mbstring": "*",
         "nesbot/carbon": ">=1.0,<3.0",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "^7.0",
         "neitanod/forceutf8": "^2.0",
         "setasign/fpdf": "^1.8"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",
-        "orchestra/testbench": "^4.0"
+        "orchestra/testbench": "^5.1"
     },
     "autoload": {
         "psr-4": {
@@ -34,11 +34,6 @@
     "autoload-dev": {
         "psr-4": {
             "Eduardokum\\LaravelBoleto\\Tests\\": "tests"
-        }
-    },
-    "config": {
-        "platform": {
-            "php": "7.2.0"
         }
     }
 }
